@@ -1,0 +1,6 @@
+{
+    "require": {
+        "team-reflex/discord-php": "^5.1",
+        "vlucas/phpdotenv": "^5.2"
+    }
+}
