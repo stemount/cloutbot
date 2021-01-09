@@ -29,15 +29,16 @@ client.on('ready', () => {
 });
 
 client.on('message', async (msg) => {
-  const args: any[] = msg.content.trim().split(' ') // get args
+  const args: string[] = msg.content.trim().split(' ') // get args
   if (
       msg.content.includes("++") || msg.content.includes("--") // check if the message contains -- or ++
   ) {
     let targetName: string = args.join(" ").replace(/(\+\+|--)\s*$/, "") // get the name
     if(targetName.includes('@')) { // check if the name has a @ in it
-      const pingedUsed: Object = msg.mentions.users.toJSON() // get the mentioned user
-      const userId = Number(pingedUsed[0].id) // get the user id
-      await msg.channel.send(`${pingedUsed[0].username} has rep ${await repUpdate(userId, msg.content)}`)
+      const pingedUsers: object = msg.mentions.users.toJSON() // get the mentioned user
+      if(msg.mentions.users.size > 1) { msg.channel.send("Pinged more than 1 user"); return } // check if there are multiple pinged users
+      const userId = Number(pingedUsers[0].id) // get the user id
+      await msg.channel.send(`${pingedUsers[0].username} has rep ${await repUpdate(userId, msg.content)}`)
       return
     }
 
@@ -45,8 +46,10 @@ client.on('message', async (msg) => {
     let user, userName 
 
     for(const [key, e] of target!.entries()) {
-      if(e.nickname?.includes(targetName)) {user = e; userName = e.nickname; break} // if nickname matches the member break from loop
-      if(e.user.username?.includes(targetName)) {user = e; userName = e.user.username; break} // if username matches the member break from loop
+      // if nickname matches the member break from loop
+      if(e.nickname?.includes(targetName)) {user = e; userName = e.nickname; break} 
+      // if username matches the member break from loop
+      if(e.user.username?.includes(targetName)) {user = e; userName = e.user.username; break} 
     }
 
     if(!user || !userName) {msg.channel.send("Can't find user"); return} // check if the user and username exist
