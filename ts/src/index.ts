@@ -47,9 +47,17 @@ client.on('message', async (msg) => {
 
     for(const [key, e] of target!.entries()) {
       // if nickname matches the member break from loop
-      if(e.nickname?.includes(targetName)) {user = e; userName = e.nickname; break} 
+      if(e.nickname?.includes(targetName)) {
+        user = e
+        userName = e.nickname;
+        break
+      } 
       // if username matches the member break from loop
-      if(e.user.username?.includes(targetName)) {user = e; userName = e.user.username; break} 
+      if(e.user.username?.includes(targetName)) {
+        user = e
+        userName = e.user.username
+        break
+      } 
     }
 
     if(!user || !userName) {msg.channel.send("Can't find user"); return} // check if the user and username exist
