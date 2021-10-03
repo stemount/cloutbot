@@ -2,7 +2,7 @@
 
 [**VIEW THE PROJECT BOARD**](https://github.com/stemount/cloutbot/projects/1)
 
-This bot was previously named `community-discord-bot` as this project does start off as a Discord bot but ideally this should actually be useable on any sort of incoming chat stream (MS Teams, Slack) - why not.
+This bot was previously named `community-discord-bot` as this project was initially intended to be a Discord bot but ideally, this should actually be useable on any sort of incoming chat stream (MS Teams, Slack) - why not.
 
 ### Core Idea
 
